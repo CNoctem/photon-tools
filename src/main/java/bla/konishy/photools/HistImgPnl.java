@@ -16,11 +16,11 @@ public class HistImgPnl extends JPanel {
 
     private File[] imgs;
     private Pnl pnl;
-    private HistUI histUi;
+    private HistUI2 histUi;
     private int idx;
 
     public HistImgPnl(File dir) throws IOException {
-        imgs = dir.listFiles();
+        imgs = dir.listFiles(File::isFile);
         init();
     }
 
@@ -28,7 +28,7 @@ public class HistImgPnl extends JPanel {
         BufferedImage img = Util.read(imgs[0]);
         idx = 0;
         pnl = new Pnl(img);
-        histUi = new HistUI(new Histogram(img, imgs[0].getName()));
+        histUi = new HistUI2(new Histogram(img, imgs[0].getName()));
 
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
         histUi.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
